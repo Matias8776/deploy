@@ -5,8 +5,8 @@ const router = Router();
 
 const productManager = new ProductManager();
 
-router.get("/", (req, res) => {
-    const products = productManager.getProducts();
+router.get("/", async (req, res) => {
+    const products = await productManager.getProducts();
     const limit = +req.query.limit;
     let result = products;
 
@@ -17,9 +17,9 @@ router.get("/", (req, res) => {
     res.send(result);
 });
 
-router.get("/:pid", (req, res) => {
+router.get("/:pid", async (req, res) => {
     const pid = +req.params.pid;
-    const product = productManager.getProductById(pid);
+    const product = await productManager.getProductById(pid);
 
     if (!product) {
         res.send({
@@ -32,7 +32,7 @@ router.get("/:pid", (req, res) => {
     res.send(product);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const {
         title,
         description,
@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
         category,
     } = req.body;
 
-    const validationResult = productManager.addProduct(
+    const validationResult = await productManager.addProduct(
         title,
         description,
         price,
@@ -69,9 +69,9 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:pid", (req, res) => {
+router.put("/:pid", async (req, res) => {
     const pid = +req.params.pid;
-    const product = productManager.getProductById(pid);
+    const product = await productManager.getProductById(pid);
 
     if (!product) {
         res.send({
@@ -81,13 +81,13 @@ router.put("/:pid", (req, res) => {
         return;
     }
     const updateProduct = req.body;
-    productManager.updateProduct(product.id, updateProduct);
+    await productManager.updateProduct(product.id, updateProduct);
     res.send({ status: "success" });
 });
 
-router.delete("/:pid", (req, res) => {
+router.delete("/:pid", async (req, res) => {
     const pid = +req.params.pid;
-    const product = productManager.getProductById(pid);
+    const product = await productManager.getProductById(pid);
 
     if (!product) {
         res.send({
@@ -97,7 +97,7 @@ router.delete("/:pid", (req, res) => {
         return;
     }
 
-    productManager.deleteProduct(product.id);
+    await productManager.deleteProduct(product.id);
     res.send({ status: "success" });
 });
 

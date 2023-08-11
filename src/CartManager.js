@@ -9,19 +9,19 @@ export default class CartManager {
         this.readJson();
     }
 
-    readJson = () => {
+    readJson = async () => {
         if (fs.existsSync(this.path)) {
             const data = fs.readFileSync(this.path, "utf-8");
             this.carts = JSON.parse(data);
         }
     };
 
-    saveJson = () => {
+    saveJson = async () => {
         const data = JSON.stringify(this.carts, null, 4);
         fs.writeFileSync(this.path, data);
     };
 
-    addCart = () => {
+    addCart = async () => {
         const cart = {
             id: null,
             products: [],
@@ -33,15 +33,15 @@ export default class CartManager {
             cart.id = this.carts[this.carts.length - 1].id + 1;
         }
         this.carts.push(cart);
-        this.saveJson();
+        await this.saveJson();
     };
 
-    getCartById = (id) => {
+    getCartById = async (id) => {
         const cart = this.carts.find((cart) => cart.id === id);
         return cart;
     };
 
-    addProductToCart = (cid, pid) => {
+    addProductToCart = async (cid, pid) => {
         const cartIndex = this.carts.findIndex((cart) => cart.id === cid);
 
         if (cartIndex !== -1) {
@@ -59,7 +59,7 @@ export default class CartManager {
                 };
                 cart.products.push(product);
             }
-            this.saveJson();
+            await this.saveJson();
         }
     };
 }

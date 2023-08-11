@@ -9,19 +9,19 @@ export default class ProductManager {
         this.readJson();
     }
 
-    readJson = () => {
+    readJson = async () => {
         if (fs.existsSync(this.path)) {
             const data = fs.readFileSync(this.path, "utf-8");
             this.products = JSON.parse(data);
         }
     };
 
-    saveJson = () => {
+    saveJson = async () => {
         const data = JSON.stringify(this.products, null, 4);
         fs.writeFileSync(this.path, data);
     };
 
-    addProduct = (
+    addProduct = async (
         title,
         description,
         price,
@@ -72,33 +72,33 @@ export default class ProductManager {
             product.id = this.products[this.products.length - 1].id + 1;
         }
         this.products.push(product);
-        this.saveJson();
+        await this.saveJson();
         result.success = true;
         result.product = product;
         return result;
     };
 
-    getProducts = () => {
+    getProducts = async () => {
         return this.products;
     };
 
-    getProductById = (id) => {
+    getProductById = async (id) => {
         const product = this.products.find((product) => product.id === id);
         return product;
     };
 
-    updateProduct = (id, productoActualizado) => {
+    updateProduct = async (id, productoActualizado) => {
         const index = this.products.findIndex((product) => product.id === id);
         this.products[index] = {
             ...this.products[index],
             ...productoActualizado,
         };
-        this.saveJson();
+        await this.saveJson();
     };
 
-    deleteProduct = (id) => {
+    deleteProduct = async (id) => {
         const index = this.products.findIndex((product) => product.id === id);
         this.products.splice(index, 1);
-        this.saveJson();
+        await this.saveJson();
     };
 }
