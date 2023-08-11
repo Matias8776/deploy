@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "fa5d5779-5fda-4e00-9efc-8068dd89ff79",
+		"name": "Deploy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28901543"
+	},
+	"item": [
+		{
+			"name": "Mostrar productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/products",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar carrito por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/carts/:cid",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"carts",
+						":cid"
+					],
+					"variable": [
+						{
+							"key": "cid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar productos por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/products/:pid",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"products",
+						":pid"
+					],
+					"variable": [
+						{
+							"key": "pid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar producto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"producto actualizado\",\r\n    \"price\": 300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/products/:pid",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"products",
+						":pid"
+					],
+					"variable": [
+						{
+							"key": "pid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mostrar rango de productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/products?limit=5",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"producto prueba11\",\r\n    \"description\": \"Este es un producto prueba11\",\r\n    \"price\": 500,\r\n    \"thumbnails\": \"\",\r\n    \"code\": \"abc250\",\r\n    \"stock\": 100,\r\n    \"status\": true,\r\n    \"category\": \"otros\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/products",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear carrito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/carts",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar producto a carrito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/carts/:cid/product/:pid",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"carts",
+						":cid",
+						"product",
+						":pid"
+					],
+					"variable": [
+						{
+							"key": "cid",
+							"value": "1"
+						},
+						{
+							"key": "pid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar producto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"producto prueba11\",\r\n    \"description\": \"Este es un producto prueba11\",\r\n    \"price\": 500,\r\n    \"thumbnails\": \"\",\r\n    \"code\": \"abc250\",\r\n    \"stock\": 100,\r\n    \"status\": true,\r\n    \"category\": \"otros\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ecommerce-lr9l-dev.fl0.io/api/products/:pid",
+					"protocol": "https",
+					"host": [
+						"ecommerce-lr9l-dev",
+						"fl0",
+						"io"
+					],
+					"path": [
+						"api",
+						"products",
+						":pid"
+					],
+					"variable": [
+						{
+							"key": "pid",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
