@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 
-app.listen(8080, () => {
+const PORT = process.env.PORT ?? 8080;
+
+app.listen(PORT, () => {
     console.log("Servidor en puerto 8080");
 });
